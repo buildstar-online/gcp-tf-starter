@@ -1,0 +1,17 @@
+#cloud-config
+hostname: virtual-bradley
+fqdn: virtual-bradley
+disable_root: false
+network:
+  config: disabled
+users:
+  - name: max
+    groups: users, admin, docker, sudo
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    lock_passwd: false
+    passwd: "$6$rounds=4096$saltsaltlettuce$Lp/FV.2oOgew7GbM6Nr8KMGMBn7iFM0x9ZwLqtx9Y4QJmKvfcnS.2zx4MKmymCPQGpHS7gqYOiqWjvdCIV2uN."
+    ssh_import_id:
+      - gh:cloudymax
+package_update: true
+package_upgrade: true

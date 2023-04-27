@@ -68,11 +68,3 @@ jobs:
         terraform-text: ${{ github.workspace }}/terraform.text
         terraform-json: ${{ github.workspace }}/terraform.json
         remove-stale-reports: true
-        
-    - name: Terraform Apply
-      if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
-      run: |
-        docker run --platform linux/amd64 \
-          -e GOOGLE_CREDENTIALS='${{ secrets.TERRAFORM_KEY }}' \
-          -v $(pwd):/terraform -w /terraform \
-          hashicorp/terraform apply -auto-approve -input=false

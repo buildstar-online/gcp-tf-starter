@@ -1,6 +1,6 @@
 # New GCP project template
 
-Creates all the basic resources needed for a new GCP terraform project + a Virtual Machine or Kubernetes Cluster. Clone this repo and follow allong to get quickly bootsrap your own GCP project.
+Creates all the basic terraform resources + GHA workflows needed for a new GCP terraform project + a Virtual Machine or Kubernetes Cluster. Clone this repo and follow allong to get quickly bootsrap your own GCP project.
 
 ## Modules in-use
 

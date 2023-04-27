@@ -51,6 +51,8 @@ jobs:
           hashicorp/terraform init --upgrade
       continue-on-error: false
       shell: bash
+      env:
+        GOOGLE_CREDENTIALS: '${{ secrets.TERRAFORM_KEY }}'
       
     - name: Terraform Validate
       run: |
@@ -81,4 +83,5 @@ jobs:
         GUEST_ACCELERATOR_COUNT: ${{github.event.inputs.guest_accelerator_count}}
         DISK_SIZE: ${{github.event.inputs.disk_size}}
         OS_IMAGE: ${{github.event.inputs.os_image}}
+        GOOGLE_CREDENTIALS: '${{ secrets.TERRAFORM_KEY }}'
 

@@ -213,7 +213,8 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_gcp-tf-base"></a> [gcp-tf-base](#module\_gcp-tf-base) | git::https://github.com/cloudymax/modules-gcp-base.git | v0.0.4 |
+| <a name="module_gcp-tf-base"></a> [gcp-tf-base](#module\_gcp-tf-base) | github.com/cloudymax/modules-gcp-tf-base.git | n/a |
+| <a name="module_gcp-tf-vm"></a> [gcp-tf-vm](#module\_gcp-tf-vm) | github.com/cloudymax/modules-gcp-tf-vm.git | n/a |
 
 ## Resources
 

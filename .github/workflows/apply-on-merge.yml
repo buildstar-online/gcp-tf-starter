@@ -34,7 +34,20 @@ jobs:
           hashicorp/terraform validate -no-color
       continue-on-error: false
       shell: bash
-        
+
+    - name: Terraform Plan
+      id: plan
+      run: |
+        docker run --platform linux/amd64 \
+          -e GOOGLE_CREDENTIALS='${{ secrets.TERRAFORM_KEY }}' \
+          -v $(pwd):/terraform -w /terraform \
+          hashicorp/terraform plan \
+          -var="organization='${{ secrets.ORGANIZATION }}'" \
+          -var="organization_id='${{ secrets.ORGANIZATION_ID }}'" \
+          -var="billing_account='${{ secrets.BILLING_ACCOUNT }}'" \
+          -no-color -lock=false -out terraform.plan
+      continue-on-error: true
+      
     - name: Terraform Apply
       id: apply
       run: |
@@ -45,6 +58,6 @@ jobs:
           -var="organization=${{ secrets.ORGANIZATION }}" \
           -var="organization_id='${{ secrets.ORGANIZATION_ID }}'" \
           -var="billing_account='${{ secrets.BILLING_ACCOUNT }}'" \
-          -auto-approve -input=false
+          -no-color -auto-approve -input=false
       continue-on-error: false
       shell: bash

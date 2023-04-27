@@ -1,0 +1,41 @@
+name: Terraform Destroy
+on: pull_request
+permissions:
+  pull-requests: write
+
+jobs:
+  terraform-destroy:
+    runs-on: ubuntu-latest 
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Terraform Init
+      id: init
+      run: |
+        docker run --platform linux/amd64 \
+          -e GOOGLE_CREDENTIALS='${{ secrets.TERRAFORM_KEY }}' \
+          -v $(pwd):/terraform -w /terraform hashicorp/terraform init -upgrade
+      continue-on-error: false
+      shell: bash
+      
+    - name: Terraform Validate
+      id: validate
+      run: |
+        docker run --platform linux/amd64 \
+          -v $(pwd):/terraform -w /terraform \
+          hashicorp/terraform validate -no-color
+      continue-on-error: false
+      shell: bash
+    
+    - name: Terraform Destroy
+      id: plan
+      run: |
+        docker run --platform linux/amd64 \
+          -e GOOGLE_CREDENTIALS='${{ secrets.TERRAFORM_KEY }}' \
+          -v $(pwd):/terraform -w /terraform \
+          hashicorp/terraform destroy \
+          -var="organization='${{ secrets.ORGANIZATION }}'" \
+          -var="organization_id='${{ secrets.ORGANIZATION_ID }}'" \
+          -var="billing_account='${{ secrets.BILLING_ACCOUNT }}'" \
+          -no-color -auto-approve
+      continue-on-error: false

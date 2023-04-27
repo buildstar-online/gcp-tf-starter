@@ -87,4 +87,5 @@ variable "os_image" {
 
 variable "disk_size" {
   type = number
+  default = 128
 }

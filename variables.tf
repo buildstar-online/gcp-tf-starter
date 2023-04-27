@@ -68,3 +68,23 @@ variable "bucket_path_prefix" {
   description = "path to the terrafom state in the bucket"
   type        = string
 }
+
+variable "machine_type" {
+  type = string
+}
+
+variable "guest_accelerator" {
+  type = string
+}
+
+variable "guest_accelerator_count" {
+  type = number
+}
+
+variable "os_image" {
+  type = string
+}
+
+variable "disk_size" {
+  type = number
+}

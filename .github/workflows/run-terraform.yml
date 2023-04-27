@@ -12,6 +12,10 @@ on:
       guest_accelerator_count:
         required: true
         default: '1'
+      os_image:
+        description: 'Operating system image'
+        required: true
+        default: 'ubuntu-os-cloud/ubuntu-2204-lts'
       disk_size:
         description: 'Disk size (GB)'
         required: true
@@ -63,8 +67,9 @@ jobs:
           hashicorp/terraform plan -no-color \
           -var="machine_type=$MACHINE_TYPE" \
           -var="guest_accelerator=$GUEST_ACCELERATOR" \
-          -var="guest_accelerator_count=$GUEST_ACCELERATOR_COUNT"
-          -var="disk_size=$DISK_SIZE"
+          -var="guest_accelerator_count=$GUEST_ACCELERATOR_COUNT" \
+          -var="disk_size=$DISK_SIZE" \
+          -var="os_image=$OS_IMAGE"
       continue-on-error: false
       shell: bash
       env:
@@ -72,4 +77,5 @@ jobs:
         GUEST_ACCELERATOR: ${{github.event.inputs.guest_accelerator}}
         GUEST_ACCELERATOR_COUNT: ${{github.event.inputs.guest_accelerator_count}}
         DISK_SIZE: ${{github.event.inputs.disk_size}}
+        OS_IMAGE: ${{github.event.inputs.os_image}}
 

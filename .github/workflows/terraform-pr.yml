@@ -1,8 +1,5 @@
 name: Terraform PR
 on: pull_request
-defaults:
-  run:
-    working-directory: ${{ env.tf_actions_working_dir }}
 permissions:
   pull-requests: write
 

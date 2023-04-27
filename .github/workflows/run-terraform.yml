@@ -5,10 +5,10 @@ on:
       machine_type:
         description: 'Virtual Machine SKU'
         required: true
-        default: 'n1-standard-8'
+        default: 'g2-standard-4'
       guest_accelerator:
         required: true
-        default: 'nvidia-tesla-p100'
+        default: 'nvidia-l4'
       guest_accelerator_count:
         required: true
         default: '1'

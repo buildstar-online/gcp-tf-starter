@@ -1,9 +1,8 @@
 ---
 version: 0.1
 resource_type_default_usage:
-  aws_lambda_function:
-    monthly_requests: 100000
-    request_duration_ms: 500
+  google_compute_instance.compute_instance:
+    monthly_hrs: 450
 resource_usage:
   google_artifact_registry_repository.my_artifact_registry:
     storage_gb: 150

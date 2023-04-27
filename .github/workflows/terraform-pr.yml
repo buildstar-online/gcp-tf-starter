@@ -1,8 +1,9 @@
 name: Terraform PR
-on: pull_request
+on: 
+  pull_request:
+  workflow_dispatch:
 permissions:
   pull-requests: write
-
 jobs:
   terraform-pr:
     runs-on: ubuntu-latest 
@@ -10,30 +11,64 @@ jobs:
     - uses: actions/checkout@v3
     - uses: hashicorp/setup-terraform@v2
 
+    - uses: actions/checkout@v3
     - name: Terraform fmt
       id: fmt
-      run: terraform fmt -check
-      continue-on-error: true
+      run: |
+        docker run --platform linux/amd64 \
+          -v $(pwd):/terraform -w /terraform \
+          hashicorp/terraform fmt
+      continue-on-error: false
+      shell: bash
 
     - name: Terraform Init
       id: init
-      run: terraform init
-
+      run: |
+        docker run --platform linux/amd64 \
+          -e GOOGLE_CREDENTIALS='${{ secrets.TERRAFORM_KEY }}' \
+          -v $(pwd):/terraform -w /terraform hashicorp/terraform init -upgrade
+      continue-on-error: false
+      shell: bash
+      
     - name: Terraform Validate
       id: validate
-      run: terraform validate -no-color
-
+      run: |
+        docker run --platform linux/amd64 \
+          -v $(pwd):/terraform -w /terraform \
+          hashicorp/terraform validate -no-color
+      continue-on-error: false
+      shell: bash
+      
     - name: Terraform Plan
       id: plan
-      run: terraform plan -no-color
-      continue-on-error: true
+      run: |
+        docker run --platform linux/amd64 \
+          -e GOOGLE_CREDENTIALS='${{ secrets.TERRAFORM_KEY }}' \
+          -v $(pwd):/terraform -w /terraform \
+          hashicorp/terraform plan -no-color \
+          -var="machine_type=$MACHINE_TYPE" \
+          -var="guest_accelerator=$GUEST_ACCELERATOR" \
+          -var="guest_accelerator_count=$GUEST_ACCELERATOR_COUNT" \
+          -var="disk_size=$DISK_SIZE" \
+          -var="os_image=$OS_IMAGE" \
+          -var="organization=${{ secrets.ORGANIZATION }}" \
+          -var="organization_id=${{ secrets.ORGANIZATION_ID }}" \
+          -var="billing_account=${{ secrets.BILLING_ACCOUNT }}"
+      continue-on-error: false
+      shell: bash
+      env:
+        MACHINE_TYPE: ${{github.event.inputs.machine_type}}
+        GUEST_ACCELERATOR: ${{github.event.inputs.guest_accelerator}}
+        GUEST_ACCELERATOR_COUNT: ${{github.event.inputs.guest_accelerator_count}}
+        DISK_SIZE: ${{github.event.inputs.disk_size}}
+        OS_IMAGE: ${{github.event.inputs.os_image}}     
 
     - uses: actions/github-script@v6
       if: github.event_name == 'pull_request'
       env:
         PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+        github-token: ${{ secrets.PAT }}
         script: |
           // 1. Retrieve existing bot comments for the PR
           const { data: comments } = await github.rest.issues.listComments({

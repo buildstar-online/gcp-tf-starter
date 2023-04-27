@@ -39,7 +39,7 @@ module "gcp-tf-vm" {
   instance_termination_action = "STOP"
   os_image                    = "ubuntu-os-cloud/ubuntu-2204-lts"
   disk_type                   = "pd-ssd"
-  disk_size                   = 64
+  disk_size                   = var.disk_size
 }
 
 /*

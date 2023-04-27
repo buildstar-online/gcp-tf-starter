@@ -1,10 +1,8 @@
 name: Apply on merge
-on: 
+on:
   pull_request:
-    branches:
-      - main
     types:
-      - merged
+      - closed
 jobs:
   terraform-apply:
     runs-on: ubuntu-latest 

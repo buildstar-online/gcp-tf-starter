@@ -42,7 +42,7 @@ jobs:
           -e GOOGLE_CREDENTIALS='${{ secrets.TERRAFORM_KEY }}' \
           -v $(pwd):/terraform -w /terraform \
           hashicorp/terraform apply \
-          -var="organization='${{ secrets.ORGANIZATION }}'" \
+          -var="organization=${{ secrets.ORGANIZATION }}" \
           -var="organization_id='${{ secrets.ORGANIZATION_ID }}'" \
           -var="billing_account='${{ secrets.BILLING_ACCOUNT }}'" \
           -auto-approve -input=false

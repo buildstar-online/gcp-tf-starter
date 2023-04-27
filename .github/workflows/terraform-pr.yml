@@ -41,10 +41,11 @@ jobs:
         docker run --platform linux/amd64 \
           -e GOOGLE_CREDENTIALS='${{ secrets.TERRAFORM_KEY }}' \
           -v $(pwd):/terraform -w /terraform \
+          hashicorp/terraform plan \
           -var="organization='${{ secrets.ORGANIZATION }}'" \
           -var="organization_id='${{ secrets.ORGANIZATION_ID }}'" \
           -var="billing_account='${{ secrets.BILLING_ACCOUNT }}'" \
-          hashicorp/terraform plan -no-color -lock=false -out terraform.plan
+          -no-color -lock=false -out terraform.plan
       continue-on-error: true
 
     # generate plain output

@@ -8,11 +8,6 @@ Creates all the basic terraform resources + GHA workflows needed for a new GCP t
 - [modules-gcp-tf-vm](https://github.com/cloudymax/modules-gcp-tf-vm)
 - [modules-gcp-tf-gke](https://github.com/cloudymax/modules-gcp-tf-gke)
 
-## Infracost
-
-Infracost shows cloud cost estimates for Terraform. It lets engineers see a cost breakdown and understand costs before making changes, either in the terminal, VS Code or pull requests.
-To get started using Infracost with Github Actions, take a look here: https://github.com/infracost/actions
-
 ## Setting-up via the gCloud CLI
 
 [Installing the gCloud CLI](https://cloud.google.com/sdk/docs/install)

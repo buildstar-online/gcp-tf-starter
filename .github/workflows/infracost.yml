@@ -1,6 +1,8 @@
 # The GitHub Actions docs (https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#on)
 # describe other options for 'on', 'pull_request' is a good default.
-on: [pull_request]
+on: 
+  pull_request:
+  workflow_dispatch:
 env:
   # If you use private modules you'll need this env variable to use
   # the same ssh-agent socket value across all jobs & steps.
@@ -50,6 +52,8 @@ jobs:
         run: |
           infracost breakdown --path=${TF_ROOT} \
                               --format=json \
+                              --show-skipped \
+                              --usage-file infracost-usage.yml \
                               --out-file=/tmp/infracost-base.json
 
       # Checkout the current PR branch so we can create a diff.

@@ -1,0 +1,203 @@
+# You can use this file to define resource usage estimates for Infracost to use when calculating
+# the cost of usage-based resource, such as AWS S3 or Lambda.
+# `infracost breakdown --usage-file infracost-usage.yml [other flags]`
+# See https://infracost.io/usage-file/ for docs
+version: 0.1
+  #
+  # Terraform GCP resources
+  #
+  google_artifact_registry_repository.my_artifact_registry:
+    storage_gb: 150 # Total data stored in the repository in GB
+    monthly_egress_data_transfer_gb: # Monthly data delivered from the artifact registry repository in GB. You can specify any number of Google Cloud regions below, replacing - for _ e.g.:
+      europe_north1: 100 # GB of data delivered from the artifact registry to europe-north1.
+      australia_southeast1: 200 # GB of data delivered from the artifact registry to australia-southeast1.
+
+  google_bigquery_dataset.my_dataset:
+    monthly_queries_tb: 100 # Monthly number of bytes processed (also referred to as bytes read) in TB.
+
+  google_bigquery_table.usage:
+    monthly_active_storage_gb: 1000    # Monthly number of active storage modifications in GB.
+    monthly_long_term_storage_gb: 1000 # Monthly number of long-term storage modifications in GB.
+    monthly_streaming_inserts_mb: 1000 # Monthly number of streaming data inserts in MB.
+    monthly_storage_write_api_gb: 1000 # Monthly number of storage write api in GB.
+    monthly_storage_read_api_tb: 1000  # Monthly number of storage read api in TB.
+
+  google_cloudfunctions_function.my_function:
+    request_duration_ms: 300               # Average duration of each request in milliseconds.
+    monthly_function_invocations: 10000000 # Monthly number of function invocations.
+    monthly_outbound_data_gb: 100          # Monthly data transferred from the function out to somewhere else in GB.
+
+  google_compute_router_nat.my_nat:
+    assigned_vms: 4                 # Number of VM instances assigned to the NAT gateway
+    monthly_data_processed_gb: 1000 # Monthly data processed (ingress and egress) by the NAT gateway in GB
+
+  google_container_cluster.my_cluster:
+    autopilot_vcpu_count: 10            # Number of vCPUs used by Autopilot pods. Only relevant for Autopilot mode.
+    autopilot_memory_gb: 50             # Total memory used by Autopilot pods. Only relevant for Autopilot mode.
+    autopilot_ephemeral_storage_gb: 100 # Total ephemeral storage used by Autopilot pods. Only relevant for Autopilot mode.
+    nodes: 4                            # Node count per zone for the default node pool. Only relevant for Standard mode.
+    node_pool[0]:
+      nodes: 2  # Node count per zone for the first node pool. Only relevant for Standard mode.
+
+  google_container_node_pool.my_node_pool:
+    nodes: 4 # Node count per zone for the node pool
+
+  google_container_registry.my_registry:
+    storage_gb: 150                   # Total size of bucket in GB.
+    monthly_class_a_operations: 40000 # Monthly number of class A operations (object adds, bucket/object list).
+    monthly_class_b_operations: 20000 # Monthly number of class B operations (object gets, retrieve bucket/object metadata).
+    monthly_data_retrieval_gb: 500    # Monthly amount of data retrieved in GB.
+    monthly_egress_data_transfer_gb:  # Monthly data transfer from Cloud Storage to the following, in GB:
+      same_continent: 550  # Same continent.
+      worldwide: 12500     # Worldwide excluding Asia, Australia.
+      asia: 1500           # Asia excluding China, but including Hong Kong.
+      china: 50            # China excluding Hong Kong.
+      australia: 250       # Australia.
+
+  google_compute_external_vpn_gateway.my_compute_external_vpn_gateway:
+    monthly_egress_data_transfer_gb:  # Monthly data transfer from VPN gateway to the following, in GB:
+      worldwide: 12500                # Worldwide excluding China, Australia but including Hong Kong.
+      china: 8500                     # China excluding Hong Kong.
+      australia: 250                  # Australia.
+
+  google_compute_vpn_gateway.my_compute_vpn_gateway:
+    monthly_egress_data_transfer_gb:  # Monthly VM-VM data transfer from VPN gateway to the following, in GB:
+      same_region: 250                # VMs in the same Google Cloud region.
+      us_or_canada: 100               # From a Google Cloud region in the US or Canada to another Google Cloud region in the US or Canada.
+      europe: 70                      # Between Google Cloud regions within Europe.
+      asia: 50                        # Between Google Cloud regions within Asia.
+      south_america: 100              # Between Google Cloud regions within South America.
+      oceania: 50                     # Indonesia and Oceania to/from any Google Cloud region.
+      worldwide: 200                  # to a Google Cloud region on another continent.
+
+  google_compute_ha_vpn_gateway.my_compute_ha_vpn_gateway:
+    monthly_egress_data_transfer_gb:  # Monthly VM-VM data transfer from VPN gateway to the following, in GB:
+      same_region: 250                # VMs in the same Google Cloud region.
+      us_or_canada: 100               # From a Google Cloud region in the US or Canada to another Google Cloud region in the US or Canada.
+      europe: 70                      # Between Google Cloud regions within Europe.
+      asia: 50                        # Between Google Cloud regions within Asia.
+      south_america: 100              # Between Google Cloud regions within South America.
+      oceania: 50                     # Indonesia and Oceania to/from any Google Cloud region.
+      worldwide: 200                  # to a Google Cloud region on another continent.
+
+  google_compute_forwarding_rule.my_forwarding:
+    monthly_ingress_data_gb: 100
+
+  google_compute_global_forwarding_rule.my_global_forwarding:
+    monthly_ingress_data_gb: 100
+
+  google_compute_image.my_image:
+    storage_gb: 1000 # Total size of image storage in GB.
+
+  google_compute_instance.my_instance:
+    monthly_hrs: 450 # Monthly number of hours the instance ran for.
+
+  google_compute_machine_image.my_machine_image:
+    storage_gb: 1000 # Total size of machine image storage in GB.
+
+  google_compute_snapshot.my_snapshot:
+    storage_gb: 500 # Total size of snapshot disk storage in GB.
+
+  google_compute_target_grpc_proxy.my_proxy:
+    monthly_proxy_instances: 10.2
+    monthly_data_processed_gb: 100
+
+  google_compute_target_http_proxy.my_proxy:
+    monthly_proxy_instances: 10.2
+    monthly_data_processed_gb: 100
+
+  google_compute_target_https_proxy.my_proxy:
+    monthly_proxy_instances: 10.2
+    monthly_data_processed_gb: 100
+
+  google_compute_target_ssl_proxy.my_proxy:
+    monthly_proxy_instances: 10.2
+    monthly_data_processed_gb: 100
+
+  google_compute_target_tcp_proxy.my_proxy:
+    monthly_proxy_instances: 10.2
+    monthly_data_processed_gb: 100
+
+  google_compute_region_target_http_proxy.my_proxy:
+    monthly_proxy_instances: 10.2
+    monthly_data_processed_gb: 100
+
+  google_compute_region_target_https_proxy.my_proxy:
+    monthly_proxy_instances: 10.2
+    monthly_data_processed_gb: 100
+
+  google_dns_record_set.my_record_set:
+    monthly_queries:  1000000 # Monthly DNS queries.
+
+  google_kms_crypto_key.my_keys:
+    key_versions: 10000             # Number of key versions.
+    monthly_key_operations: 1000000 # Monthly number of key operations.
+
+  google_logging_billing_account_bucket_config.my_config:
+    monthly_logging_data_gb: 100  # Monthly logging data in GB.
+
+  google_logging_billing_account_sink.my_sink:
+    monthly_logging_data_gb: 100  # Monthly logging data in GB.
+
+  google_logging_folder_bucket_config.my_config:
+    monthly_logging_data_gb: 100  # Monthly logging data in GB.
+
+  google_logging_folder_sink.my_sink:
+    monthly_logging_data_gb: 100  # Monthly logging data in GB.
+
+  google_logging_organization_bucket_config.my.config:
+    monthly_logging_data_gb: 100  # Monthly logging data in GB.
+
+  google_logging_organization_sink.my_sink:
+    monthly_logging_data_gb: 100  # Monthly logging data in GB.
+
+  google_logging_project_bucket_config.my_config:
+    monthly_logging_data_gb: 100  # Monthly logging data in GB.
+
+  google_logging_project_sink.my_sink:
+    monthly_logging_data_gb: 100  # Monthly logging data in GB.
+
+  google_monitoring_metric_descriptor.my_monitoring:
+    monthly_monitoring_data_mb: 5000 # Monthly monitoring data in MB (only for chargeable metrics).
+    monthly_api_calls: 1000000       # Monthly read API calls (write calls are free).
+
+  google_pubsub_subscription.my_subscription:
+    monthly_message_data_tb: 7.416 # Monthly amount of message data pulled by the subscription in TB.
+    storage_gb: 605                # Storage for retaining acknowledged messages in GB.
+    snapshot_storage_gb: 70.6      # Snapshot storage for unacknowledged messages in GB.
+
+  google_pubsub_topic.my_topic:
+    monthly_message_data_tb: 7.416 # Monthly amount of message data published to the topic in TB.
+
+  google_secret_manager_secret.my_secret:
+    active_secret_versions: 10000       # Number of active secret versions in each month. NOTE: this is used only when secret versions are not defined.
+    monthly_access_operations: 20000    # Monthly number of access operations
+    monthly_rotation_notifications: 100 # Monthly number of rotation notifications
+
+  google_secret_manager_secret_version.my_secret_version:
+    monthly_access_operations: 25000 # Monthly number of access operations
+
+  google_service_networking_connection.my_connection:
+    monthly_egress_data_transfer_gb: # Monthly VM-VM data transfer from VPN gateway to the following, in GB:
+      same_region: 250                # VMs in the same Google Cloud region.
+      us_or_canada: 100               # From a Google Cloud region in the US or Canada to another Google Cloud region in the US or Canada.
+      europe: 70                      # Between Google Cloud regions within Europe.
+      asia: 50                        # Between Google Cloud regions within Asia.
+      south_america: 100              # Between Google Cloud regions within South America.
+      oceania: 50                     # Indonesia and Oceania to/from any Google Cloud region.
+      worldwide: 200                  # to a Google Cloud region on another continent.
+
+  google_sql_database_instance.my_instance:
+    backup_storage_gb: 1000 # Amount of backup storage in GB.
+
+  google_storage_bucket.my_storage_bucket:
+    storage_gb: 150                   # Total size of bucket in GB.
+    monthly_class_a_operations: 40000 # Monthly number of class A operations (object adds, bucket/object list).
+    monthly_class_b_operations: 20000 # Monthly number of class B operations (object gets, retrieve bucket/object metadata).
+    monthly_data_retrieval_gb: 500    # Monthly amount of data retrieved in GB.
+    monthly_egress_data_transfer_gb:  # Monthly data transfer from Cloud Storage to the following, in GB:
+      same_continent: 550  # Same continent.
+      worldwide: 12500     # Worldwide excluding Asia, Australia.
+      asia: 1500           # Asia excluding China, but including Hong Kong.
+      china: 50            # China excluding Hong Kong.
+      australia: 250       # Australia.

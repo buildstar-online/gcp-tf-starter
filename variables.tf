@@ -86,6 +86,11 @@ variable "os_image" {
   default = "ubuntu-os-cloud/ubuntu-2204-lts"
 }
 
+variable "userdata" {
+  type    = string
+  default = "user-data.yaml"
+}
+
 variable "disk_size" {
   type    = number
   default = 128

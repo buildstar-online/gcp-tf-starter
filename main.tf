@@ -40,6 +40,7 @@ module "gcp-tf-vm" {
   os_image                    = var.os_image
   disk_type                   = "pd-ssd"
   disk_size                   = var.disk_size
+  userdata                    = var.userdata
 }
 
 /*

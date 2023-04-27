@@ -1,5 +1,5 @@
 name: Terraform Destroy
-on: pull_request
+on: workflow_dispatch
 permissions:
   pull-requests: write
 
@@ -28,14 +28,24 @@ jobs:
       shell: bash
     
     - name: Terraform Destroy
-      id: plan
       run: |
         docker run --platform linux/amd64 \
           -e GOOGLE_CREDENTIALS='${{ secrets.TERRAFORM_KEY }}' \
           -v $(pwd):/terraform -w /terraform \
           hashicorp/terraform destroy \
-          -var="organization='${{ secrets.ORGANIZATION }}'" \
-          -var="organization_id='${{ secrets.ORGANIZATION_ID }}'" \
-          -var="billing_account='${{ secrets.BILLING_ACCOUNT }}'" \
-          -no-color -auto-approve
+          -var="machine_type=$MACHINE_TYPE" \
+          -var="guest_accelerator=$GUEST_ACCELERATOR" \
+          -var="guest_accelerator_count=$GUEST_ACCELERATOR_COUNT" \
+          -var="disk_size=$DISK_SIZE" \
+          -var="os_image=$OS_IMAGE" \
+          -var="organization=${{ secrets.ORGANIZATION }}" \
+          -var="organization_id=${{ secrets.ORGANIZATION_ID }}" \
+          -var="billing_account=${{ secrets.BILLING_ACCOUNT }}" -auto-approve -input=false
+      shell: bash
       continue-on-error: false
+      env:
+        MACHINE_TYPE: ${{github.event.inputs.machine_type}}
+        GUEST_ACCELERATOR: ${{github.event.inputs.guest_accelerator}}
+        GUEST_ACCELERATOR_COUNT: ${{github.event.inputs.guest_accelerator_count}}
+        DISK_SIZE: ${{github.event.inputs.disk_size}}
+        OS_IMAGE: ${{github.event.inputs.os_image}}

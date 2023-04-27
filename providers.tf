@@ -18,7 +18,6 @@ terraform {
 provider "google" {
   project     = "gpu-cloud-init-project"
   region      = "europe-west4"
-  credentials = "/terraform/terraform-key"
 }
 
 provider "random" {

@@ -32,8 +32,8 @@ module "gcp-tf-vm" {
   location                    = var.location
   main_availability_zone      = var.main_availability_zone
   big_robot_email             = var.big_robot_email
-  machine_type                = "n1-standard-8"
-  guest_accelerator           = "nvidia-tesla-p100"
+  machine_type                = "g2-standard-4"
+  guest_accelerator           = "nvidia-l4"
   guest_accelerator_count     = 1
   provisioning_model          = "SPOT"
   instance_termination_action = "STOP"

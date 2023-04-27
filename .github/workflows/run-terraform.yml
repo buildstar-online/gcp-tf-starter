@@ -2,37 +2,39 @@ name: Run Terraform
 on:
   workflow_dispatch:
     inputs:
-      vm_sku:
+      machine_type:
         description: 'Virtual Machine SKU'
         required: true
-        default: 'Standard_NV6ads_A10_v5'
+        default: 'n1-standard-8'
+      guest_accelerator:
+        required: true
+        default: 'nvidia-tesla-p100'
+      guest_accelerator_count:
+        required: true
+        default: '1'
       disk_size:
         description: 'Disk size (GB)'
         required: true
         default: '64'
-      num_instances:
-        description: 'Number of Instances'
-        required: true
-        default: '1'
-      max_bid:
-        description: 'Maximum spot bid amount'
-        required: true
-        default: '0.24'        
-      allowed_ip:
-        description: 'Your IP address'
-        required: true
 jobs:
   run-terraform:
     runs-on: ubuntu-latest
     steps:
+    - id: 'auth'
+      uses: 'google-github-actions/auth@v1'
+      with:
+        credentials_json: '${{ secrets.TERRAFORM_KEY }}'
+
+    - name: 'Set up Cloud SDK'
+      uses: 'google-github-actions/setup-gcloud@v1'
+
+    - name: 'Use gcloud CLI'
+      run: 'gcloud info'
+      
     - uses: actions/checkout@v3
     - name: Terraform fmt
       run: |
         docker run --platform linux/amd64 \
-          -e ARM_CLIENT_ID=${{ secrets.ARM_CLIENT_ID }} \
-          -e ARM_CLIENT_SECRET=${{ secrets.ARM_CLIENT_SECRET }} \
-          -e ARM_SUBSCRIPTION_ID=${{ secrets.ARM_SUBSCRIPTION_ID }} \
-          -e ARM_TENANT_ID=${{ secrets.ARM_TENANT_ID }} \
           -v $(pwd):/terraform -w /terraform \
           hashicorp/terraform fmt
       continue-on-error: false
@@ -41,10 +43,6 @@ jobs:
     - name: Terraform Init
       run: |
         docker run --platform linux/amd64 \
-          -e ARM_CLIENT_ID=${{ secrets.ARM_CLIENT_ID }} \
-          -e ARM_CLIENT_SECRET=${{ secrets.ARM_CLIENT_SECRET }} \
-          -e ARM_SUBSCRIPTION_ID=${{ secrets.ARM_SUBSCRIPTION_ID }} \
-          -e ARM_TENANT_ID=${{ secrets.ARM_TENANT_ID }} \
           -v $(pwd):/terraform -w /terraform \
           hashicorp/terraform init --upgrade
       continue-on-error: false
@@ -53,10 +51,6 @@ jobs:
     - name: Terraform Validate
       run: |
         docker run --platform linux/amd64 \
-          -e ARM_CLIENT_ID=${{ secrets.ARM_CLIENT_ID }} \
-          -e ARM_CLIENT_SECRET=${{ secrets.ARM_CLIENT_SECRET }} \
-          -e ARM_SUBSCRIPTION_ID=${{ secrets.ARM_SUBSCRIPTION_ID }} \
-          -e ARM_TENANT_ID=${{ secrets.ARM_TENANT_ID }} \
           -v $(pwd):/terraform -w /terraform \
           hashicorp/terraform validate -no-color
       continue-on-error: false
@@ -65,22 +59,17 @@ jobs:
     - name: Terraform Plan
       run: |
         docker run --platform linux/amd64 \
-          -e ARM_CLIENT_ID=${{ secrets.ARM_CLIENT_ID }} \
-          -e ARM_CLIENT_SECRET=${{ secrets.ARM_CLIENT_SECRET }} \
-          -e ARM_SUBSCRIPTION_ID=${{ secrets.ARM_SUBSCRIPTION_ID }} \
-          -e ARM_TENANT_ID=${{ secrets.ARM_TENANT_ID }} \
           -v $(pwd):/terraform -w /terraform \
           hashicorp/terraform plan -no-color \
-          -var="vm_sku=$VM_SKU" \
-          -var="vm_os_disk_size_gb=$DISK_SIZE" \
-          -var="vm_instances=$NUM_INSTANCES" \
-          -var="max_bid_price=$MAX_BID" \
-          -var="allowed_ips=[\"$ALLOWED_IPS\"]"
+          -var="machine_type=$MACHINE_TYPE" \
+          -var="guest_accelerator=$GUEST_ACCELERATOR" \
+          -var="guest_accelerator_count=$GUEST_ACCELERATOR_COUNT"
+          -var="disk_size=$DISK_SIZE"
       continue-on-error: false
       shell: bash
       env:
-        VM_SKU: ${{github.event.inputs.editor_version}}
-        DISK_SIZE: ${{github.event.inputs.editor_version}}
-        NUM_INSTANCES: ${{github.event.inputs.editor_version}}
-        MAX_BID: ${{github.event.inputs.editor_version}}
-        ALLOWED_IPS: ${{github.event.inputs.editor_version}}
+        MACHINE_TYPE: ${{github.event.inputs.machine_type}}
+        GUEST_ACCELERATOR: ${{github.event.inputs.guest_accelerator}}
+        GUEST_ACCELERATOR_COUNT: ${{github.event.inputs.guest_accelerator_count}}
+        DISK_SIZE: ${{github.event.inputs.disk_size}}
+

@@ -63,7 +63,7 @@ jobs:
     - name: Terraform Plan
       run: |
         docker run --platform linux/amd64 \
-          -e GOOGLE_CREDENTIALS=${{ secrets.TERRAFORM_KEY }} \
+          -e GOOGLE_CREDENTIALS='${{ secrets.TERRAFORM_KEY }}' \
           -v $(pwd):/terraform -w /terraform \
           hashicorp/terraform plan -no-color \
           -var="machine_type=$MACHINE_TYPE" \

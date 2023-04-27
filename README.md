@@ -12,6 +12,12 @@ Creates:
 - KMS Key
 - Virtual Machine or Kubernetes Cluster
 
+## Modules in-use
+
+- [modules-gcp-tf-base](https://github.com/cloudymax/modules-gcp-tf-base)
+- [modules-gcp-tf-vm](https://github.com/cloudymax/modules-gcp-tf-vm)
+- [modules-gcp-tf-gke](https://github.com/cloudymax/modules-gcp-tf-gke)
+
 ## Setting-up via the gCloud CLI
 
 [Installing the gCloud CLI](https://cloud.google.com/sdk/docs/install)

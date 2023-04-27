@@ -31,5 +31,8 @@ jobs:
         run: |
           infracost breakdown --path=${TF_ROOT} \
                           --show-skipped \
-                          --usage-file=infracost-usage.yaml
+                          --usage-file=infracost-usage.yaml \
+                          --terraform-var="organization='${{ secrets.ORGANIZATION }}'" \
+                          --terraform-var=="organization_id='${{ secrets.ORGANIZATION_ID }}'" \
+                          --terraform-var="billing_account='${{ secrets.BILLING_ACCOUNT }}'"
                           

@@ -20,6 +20,10 @@ on:
         description: 'Disk size (GB)'
         required: true
         default: '64'
+      userdata:
+        description: 'Path to cloud-init user-data file'
+        required: true
+        default: 'user-data.yaml'
 jobs:
   run-terraform:
     runs-on: ubuntu-latest
@@ -71,9 +75,10 @@ jobs:
           -var="guest_accelerator_count=$GUEST_ACCELERATOR_COUNT" \
           -var="disk_size=$DISK_SIZE" \
           -var="os_image=$OS_IMAGE" \
+          -var="userdata=$USER_DATA" \
           -var="organization=${{ secrets.ORGANIZATION }}" \
           -var="organization_id=${{ secrets.ORGANIZATION_ID }}" \
-          -var="billing_account=${{ secrets.BILLING_ACCOUNT }}"
+          -var="billing_account=${{ secrets.BILLING_ACCOUNT }}" 
       continue-on-error: false
       shell: bash
       env:
@@ -82,6 +87,7 @@ jobs:
         GUEST_ACCELERATOR_COUNT: ${{github.event.inputs.guest_accelerator_count}}
         DISK_SIZE: ${{github.event.inputs.disk_size}}
         OS_IMAGE: ${{github.event.inputs.os_image}}
+        USER_DATA: ${{github.event.inputs.userdata}}
 
     - name: Terraform Apply
       run: |

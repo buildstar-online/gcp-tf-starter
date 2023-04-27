@@ -1,5 +1,52 @@
+name: Terraform PR
+on: 
   pull_request:
     branches:
       - main
     types:
       - merged
+jobs:
+  terraform-pr:
+    runs-on: ubuntu-latest 
+    steps:
+    - uses: actions/checkout@v3
+    - name: Terraform fmt
+      id: fmt
+      run: |
+        docker run --platform linux/amd64 \
+          -v $(pwd):/terraform -w /terraform \
+          hashicorp/terraform fmt
+      continue-on-error: false
+      shell: bash
+
+    - name: Terraform Init
+      id: init
+      run: |
+        docker run --platform linux/amd64 \
+          -e GOOGLE_CREDENTIALS='${{ secrets.TERRAFORM_KEY }}' \
+          -v $(pwd):/terraform -w /terraform hashicorp/terraform init -upgrade
+      continue-on-error: false
+      shell: bash
+      
+    - name: Terraform Validate
+      id: validate
+      run: |
+        docker run --platform linux/amd64 \
+          -v $(pwd):/terraform -w /terraform \
+          hashicorp/terraform validate -no-color
+      continue-on-error: false
+      shell: bash
+        
+    - name: Terraform Apply
+      id: apply
+      run: |
+        docker run --platform linux/amd64 \
+          -e GOOGLE_CREDENTIALS='${{ secrets.TERRAFORM_KEY }}' \
+          -v $(pwd):/terraform -w /terraform \
+          hashicorp/terraform apply \
+          -var="organization='${{ secrets.ORGANIZATION }}'" \
+          -var="organization_id='${{ secrets.ORGANIZATION_ID }}'" \
+          -var="billing_account='${{ secrets.BILLING_ACCOUNT }}'" \
+          -auto-approve -input=false
+      continue-on-error: false
+      shell: bash

@@ -1,4 +1,4 @@
-name: Terraform PR
+name: Apply on merge
 on: 
   pull_request:
     branches:
@@ -6,7 +6,7 @@ on:
     types:
       - merged
 jobs:
-  terraform-pr:
+  terraform-apply:
     runs-on: ubuntu-latest 
     steps:
     - uses: actions/checkout@v3

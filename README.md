@@ -155,7 +155,7 @@ or use docker the docker container `gcr.io/google.com/cloudsdktool/google-cloud-
         --purpose "encryption"
     ```
 
-12. Then we create a service-account key, auth the key and assume the identity
+12. Then we create a service-account key, auth the key and assume the identity. Save the resulting json file as a repo secret called 'TERRAFORM_KEY'.
 
     ```bash
     gcloud iam service-accounts keys create $KEYRING_KEY \

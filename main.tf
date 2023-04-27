@@ -33,11 +33,11 @@ module "gcp-tf-vm" {
   main_availability_zone      = var.main_availability_zone
   big_robot_email             = var.big_robot_email
   machine_type                = "n1-standard-8"
-  guest_accelerator           = "nvidia-tesla-p100"
-  guest_accelerator_count     = 1
+  guest_accelerator           = var.guest_accelerator
+  guest_accelerator_count     = var.guest_accelerator_count
   provisioning_model          = "SPOT"
   instance_termination_action = "STOP"
-  os_image                    = "ubuntu-os-cloud/ubuntu-2204-lts"
+  os_image                    = var.os_image
   disk_type                   = "pd-ssd"
   disk_size                   = var.disk_size
 }

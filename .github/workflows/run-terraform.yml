@@ -83,3 +83,11 @@ jobs:
         DISK_SIZE: ${{github.event.inputs.disk_size}}
         OS_IMAGE: ${{github.event.inputs.os_image}}
 
+    - name: Terraform Apply
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      run: |
+        docker run --platform linux/amd64 \
+          -e GOOGLE_CREDENTIALS='${{ secrets.TERRAFORM_KEY }}' \
+          -v $(pwd):/terraform -w /terraform \
+          hashicorp/terraform apply -auto-approve -input=false
+      continue-on-error: false

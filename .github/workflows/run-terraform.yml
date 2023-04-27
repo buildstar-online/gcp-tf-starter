@@ -69,7 +69,10 @@ jobs:
           -var="guest_accelerator=$GUEST_ACCELERATOR" \
           -var="guest_accelerator_count=$GUEST_ACCELERATOR_COUNT" \
           -var="disk_size=$DISK_SIZE" \
-          -var="os_image=$OS_IMAGE"
+          -var="os_image=$OS_IMAGE" \
+          -var="organization=${{ secrets.ORGANIZATION }} \
+          -var="organization_id=${{ secrets.ORGANIZATION_ID }}" \
+          -var="billing_account={{ secrets.BILLING_ACCOUNT }}"
       continue-on-error: false
       shell: bash
       env:

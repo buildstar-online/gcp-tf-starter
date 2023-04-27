@@ -174,7 +174,7 @@ or use docker the docker container `gcr.io/google.com/cloudsdktool/google-cloud-
     gsutil versioning set on gs://$BACKEND_BUCKET_NAME
     ```
 
-14. Populate the templates. envsubst requires the apt packages `gettext`.
+14. Populate the templates. envsubst requires the apt packages `gettext`. Add repo secrets for `ORGANIZATION`, `ORGANIZATION_ID`, and `BILLING ACCOUNT` if using the included workflow.
 
     ```bash
     envsubst < "backend.tf.template" > "backend.tf"
@@ -182,7 +182,7 @@ or use docker the docker container `gcr.io/google.com/cloudsdktool/google-cloud-
     envsubst < "providers.tf.template" > "providers.tf"
     ```
 
-15. Init and apply terraform
+15. Init and apply terraform via the command line.
 
     ```bash
     docker run --platform linux/amd64 -it \

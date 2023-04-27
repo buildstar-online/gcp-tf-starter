@@ -1,4 +1,4 @@
-name: Terraform PR
+name: Terraform Plan on PR
 on: pull_request
 permissions:
   pull-requests: write

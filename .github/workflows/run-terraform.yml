@@ -49,7 +49,7 @@ jobs:
         docker run --platform linux/amd64 \
           -e GOOGLE_CREDENTIALS=${{ secrets.TERRAFORM_KEY }} \
           -v $(pwd):/terraform -w /terraform \
-          hashicorp/terraform init --upgrade
+          hashicorp/terraform init -upgrade
       continue-on-error: false
       shell: bash
       

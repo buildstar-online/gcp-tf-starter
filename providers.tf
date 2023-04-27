@@ -16,8 +16,8 @@ terraform {
 }
 
 provider "google" {
-  project     = "gpu-cloud-init-project"
-  region      = "europe-west4"
+  project = "gpu-cloud-init-project"
+  region  = "europe-west4"
 }
 
 provider "random" {

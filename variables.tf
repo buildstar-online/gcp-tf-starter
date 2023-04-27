@@ -82,11 +82,11 @@ variable "guest_accelerator_count" {
 }
 
 variable "os_image" {
-  type = string
+  type    = string
   default = "ubuntu-os-cloud/ubuntu-2204-lts"
 }
 
 variable "disk_size" {
-  type = number
+  type    = number
   default = 128
 }

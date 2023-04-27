@@ -1,22 +1,17 @@
 # New GCP project template
 
-Creates the basic resources needed for a new GCP terraform project. Clone this repo and follow allong.
-
-Creates:
-
-- A GCP Project
-- Identity Group
-- State Bucket
-- Service Account
-- IAM permissions
-- KMS Key
-- Virtual Machine or Kubernetes Cluster
+Creates all the basic resources needed for a new GCP terraform project + a Virtual Machine or Kubernetes Cluster. Clone this repo and follow allong to get quickly bootsrap your own GCP project.
 
 ## Modules in-use
 
 - [modules-gcp-tf-base](https://github.com/cloudymax/modules-gcp-tf-base)
 - [modules-gcp-tf-vm](https://github.com/cloudymax/modules-gcp-tf-vm)
 - [modules-gcp-tf-gke](https://github.com/cloudymax/modules-gcp-tf-gke)
+
+## Infracost
+
+Infracost shows cloud cost estimates for Terraform. It lets engineers see a cost breakdown and understand costs before making changes, either in the terminal, VS Code or pull requests.
+To get started using Infracost with Github Actions, take a look here: https://github.com/infracost/actions
 
 ## Setting-up via the gCloud CLI
 

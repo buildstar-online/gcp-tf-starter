@@ -32,7 +32,7 @@ module "gcp-tf-vm" {
   location                    = var.location
   main_availability_zone      = var.main_availability_zone
   big_robot_email             = var.big_robot_email
-  machine_type                = "n1-standard-8"
+  machine_type                = var.machine_type
   guest_accelerator           = var.guest_accelerator
   guest_accelerator_count     = var.guest_accelerator_count
   provisioning_model          = "SPOT"

@@ -47,12 +47,11 @@ jobs:
     - name: Terraform Init
       run: |
         docker run --platform linux/amd64 \
+          -e GOOGLE_CREDENTIALS=${{ secrets.TERRAFORM_KEY }} \
           -v $(pwd):/terraform -w /terraform \
           hashicorp/terraform init --upgrade
       continue-on-error: false
       shell: bash
-      env:
-        GOOGLE_CREDENTIALS: '${{ secrets.TERRAFORM_KEY }}'
       
     - name: Terraform Validate
       run: |
@@ -65,6 +64,7 @@ jobs:
     - name: Terraform Plan
       run: |
         docker run --platform linux/amd64 \
+          -e GOOGLE_CREDENTIALS=${{ secrets.TERRAFORM_KEY }} \
           -v $(pwd):/terraform -w /terraform \
           hashicorp/terraform plan -no-color \
           -var="machine_type=$MACHINE_TYPE" \
@@ -83,5 +83,4 @@ jobs:
         GUEST_ACCELERATOR_COUNT: ${{github.event.inputs.guest_accelerator_count}}
         DISK_SIZE: ${{github.event.inputs.disk_size}}
         OS_IMAGE: ${{github.event.inputs.os_image}}
-        GOOGLE_CREDENTIALS: '${{ secrets.TERRAFORM_KEY }}'
 

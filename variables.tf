@@ -86,5 +86,5 @@ variable "os_image" {
 }
 
 variable "disk_size" {
-  type = number
+  type = any
 }

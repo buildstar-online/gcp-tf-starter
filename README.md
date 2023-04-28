@@ -2,20 +2,16 @@
 
 Creates all the basic terraform resources + GHA workflows needed for a new GCP terraform project + a Virtual Machine or Kubernetes Cluster. Clone this repo and follow allong to get quickly bootsrap your own GCP project.
 
-## Modules in-use
-
+Modules in-use:
 - [modules-gcp-tf-base](https://github.com/cloudymax/modules-gcp-tf-base)
 - [modules-gcp-tf-vm](https://github.com/cloudymax/modules-gcp-tf-vm)
 - [modules-gcp-tf-gke](https://github.com/cloudymax/modules-gcp-tf-gke)
 
-## Setting-up via the gCloud CLI
+## Quick-start
 
-[Installing the gCloud CLI](https://cloud.google.com/sdk/docs/install)
-
-or use docker the docker container `gcr.io/google.com/cloudsdktool/google-cloud-cli`
-
-
-1. Log in
+You will need the gcloud-cli installed to complete this guide 
+- [Installing the gCloud CLI](https://cloud.google.com/sdk/docs/install)
+- or use the docker container `gcr.io/google.com/cloudsdktool/google-cloud-cli`
 
    ```bash
    gcloud auth login --no-launch-browser

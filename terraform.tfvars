@@ -12,4 +12,5 @@ bucket_path_prefix      = "terraform/state"
 guest_accelerator       = "nvidia-l4"
 guest_accelerator_count = 1
 machine_type            = "g2-standard-8"
-
+disk_type               = "pd-ssd"
+disk_size               = "64"

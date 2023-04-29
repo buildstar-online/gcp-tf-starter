@@ -181,6 +181,7 @@ You will need the gcloud-cli installed to complete this guide
     docker run -it --platform linux/amd64 -it \
     -v $(pwd):/terraform \
     -e "GOOGLE_APPLICATION_CREDENTIALS=$KEYRING_KEY" \
+    -e "GOOGLE_PROJECT=gpu-cloud-init-project"
     -w /terraform \
     hashicorp/terraform:latest \
     apply \

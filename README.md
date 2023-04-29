@@ -45,7 +45,7 @@ You will need the gcloud-cli installed to complete this guide
 
    ```bash
    export PROJECT_NAME="An Easy To Read Name"
-   export PROJECT_ID="machine-readable-project-name"
+   export PROJECT_ID="gpu-cloud-init-project"
    export ORGANIZATION=
    export ORGANIZATION_DOMAIN=
    export ORGANIZATION_ID=$(gcloud organizations list |grep $ORGANIZATION |awk '{print $2}')
@@ -181,7 +181,7 @@ You will need the gcloud-cli installed to complete this guide
     docker run -it --platform linux/amd64 -it \
     -v $(pwd):/terraform \
     -e "GOOGLE_APPLICATION_CREDENTIALS=$KEYRING_KEY" \
-    -e "GOOGLE_PROJECT=gpu-cloud-init-project" \
+    -e "GOOGLE_PROJECT=$PROJECT_ID" \
     -w /terraform \
     hashicorp/terraform:latest \
     apply \

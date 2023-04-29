@@ -173,13 +173,20 @@ You will need the gcloud-cli installed to complete this guide
     ```bash
     docker run --platform linux/amd64 -it \
     -v $(pwd):/terraform \
+    -e "GOOGLE_APPLICATION_CREDENTIALS=$KEYRING_KEY" \
     -w /terraform \
-    hashicorp/terraform:latest init
+    hashicorp/terraform:latest \
+    -var="billing_account=$BILLING_ACCOUNT" init
 
     docker run -it --platform linux/amd64 -it \
     -v $(pwd):/terraform \
+    -e "GOOGLE_APPLICATION_CREDENTIALS=$KEYRING_KEY" \
     -w /terraform \
-    hashicorp/terraform:latest apply
+    hashicorp/terraform:latest \
+    apply \
+    -var="billing_account=$BILLING_ACCOUNT" \
+    -var="organization=$ORGANIZATION" \
+    -var="organization_id=$ORGANIZATION_ID"
     ```
 
 ## GPU Quoata request

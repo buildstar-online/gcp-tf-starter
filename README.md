@@ -15,11 +15,43 @@ Workflows included:
 - [Craete an Infracost price estimate on workflow dispatch](https://github.com/cloudymax/gcp-tf-starter/blob/main/.github/workflows/infracost.yml)
 - [Update terraform docs on workflow dispatch](https://github.com/cloudymax/gcp-tf-starter/blob/main/.github/workflows/main.yml)
 
-## Get Started
+## Requirements
 
-You will need the gcloud-cli installed to complete this guide 
-- [Installing the gCloud CLI](https://cloud.google.com/sdk/docs/install)
-- or use the docker container `gcr.io/google.com/cloudsdktool/google-cloud-cli`
+1. A Google Cloud Platform Account
+
+   This project uses non-free resources. You will need to sign up for a gcloud account, verify your identity as well as provide a payment method. One of the benefits of wutomating your cloud projects with terraform is the ease with which you may re-create and destroy cloud resources. Make use of this festure to `turn off` your project when it is not in use.
+
+   - [Sign up for Google Cloud and recieved $300 in credits](https://cloud.google.com/free)
+
+2. gCloud CLI
+   
+   You will need googles cli tool to authenticate your innitial account as well as create some base resources and permissions that will allow terraform to control your project.
+   - [Installing the gCloud CLI](https://cloud.google.com/sdk/docs/install)
+   - or use the docker container `gcr.io/google.com/cloudsdktool/google-cloud-cli`
+
+3. Terraform
+
+   You will need terraform to manage all of the terraform (obviously). Be aware that terraform doesn't have ARM64 support yet so M1/M2 mac users will need to use the docker version of the cli with the `--platform linux/amd64` flag.
+   - [Installing Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
+   - [Dockerhub images](https://hub.docker.com/r/hashicorp/terraform/)
+
+4. Quotas
+
+   GCP as well as most other cloud providers amke use of `Quotas` to limit the amount of resources customers can create. This prevents abuse of their `free-tier` as well as stops customer from accidentially letting autoscaling generate massive bills. If you plan on deploying GPU/TPU accelerators or more than a couple VMs, you will need to request a quota increase for those resources. See below for more information.
+
+   - [How to request GPU quota increase in Google Cloud](https://stackoverflow.com/questions/45227064/how-to-request-gpu-quota-increase-in-google-cloud)
+
+5. Infracost (Optional)
+
+   Infracost shows cloud cost estimates for Terraform. It lets engineers see a cost breakdown and understand costs before making changes, either in the terminal, VS Code or pull requests.
+   
+   > Infracost isnt working for the `g2-standard` instance family on GCP yet since it's a brand-new machine family that just went live. I have a ticket open [HERE](https://github.com/infracost/infracost/issues/2437) for the issue and have been told it will be addressed in the next release.
+   
+   - [Infracost Quickstart Guide](https://www.infracost.io/docs/#quick-start)
+   - [Run Infracost automatically in your Github Actions Workflows](https://github.com/infracost/actions)
+   - [Check out the project out on Github](https://github.com/infracost/infracost)
+
+## Get Started
 
 1. Authenticate to Google Cloud
 

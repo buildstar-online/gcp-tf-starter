@@ -21,6 +21,8 @@ You will need the gcloud-cli installed to complete this guide
 - [Installing the gCloud CLI](https://cloud.google.com/sdk/docs/install)
 - or use the docker container `gcr.io/google.com/cloudsdktool/google-cloud-cli`
 
+1. Authenticate to Google Cloud
+
    ```bash
    gcloud auth login --no-launch-browser
    ```

@@ -15,7 +15,7 @@ Workflows included:
 - [Craete an Infracost price estimate on workflow dispatch](https://github.com/cloudymax/gcp-tf-starter/blob/main/.github/workflows/infracost.yml)
 - [Update terraform docs on workflow dispatch](https://github.com/cloudymax/gcp-tf-starter/blob/main/.github/workflows/main.yml)
 
-## Quick-start
+## Get Started
 
 You will need the gcloud-cli installed to complete this guide 
 - [Installing the gCloud CLI](https://cloud.google.com/sdk/docs/install)

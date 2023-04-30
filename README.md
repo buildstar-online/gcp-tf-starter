@@ -2,10 +2,18 @@
 
 Creates all the basic terraform resources + GHA workflows needed for a new GCP terraform project + a Virtual Machine or Kubernetes Cluster. Clone this repo and follow allong to get quickly bootsrap your own GCP project.
 
-Modules in-use:
+Modules in use:
 - [modules-gcp-tf-base](https://github.com/cloudymax/modules-gcp-tf-base)
 - [modules-gcp-tf-vm](https://github.com/cloudymax/modules-gcp-tf-vm)
 - [modules-gcp-tf-gke](https://github.com/cloudymax/modules-gcp-tf-gke)
+
+Workflows included:
+- [Run `terraform apply` on merge to main](https://github.com/cloudymax/gcp-tf-starter/blob/main/.github/workflows/apply-on-merge.yml)
+- [Run `terraform plan` on pull request](https://github.com/cloudymax/gcp-tf-starter/blob/main/.github/workflows/plan-on-pr.yml)
+- [Run `terraform apply` with custom parameters on workflow dispatch](https://github.com/cloudymax/gcp-tf-starter/blob/main/.github/workflows/run-terraform.yml)
+- [Run `terraform destroy` on workflow dispatch](https://github.com/cloudymax/gcp-tf-starter/blob/main/.github/workflows/terraform-destroy.yml)
+- [Craete an Infracost price estimate on workflow dispatch](https://github.com/cloudymax/gcp-tf-starter/blob/main/.github/workflows/infracost.yml)
+- [Update terraform docs on workflow dispatch](https://github.com/cloudymax/gcp-tf-starter/blob/main/.github/workflows/main.yml)
 
 ## Quick-start
 

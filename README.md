@@ -254,7 +254,7 @@ No providers.
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_gcp-tf-base"></a> [gcp-tf-base](#module\_gcp-tf-base) | github.com/cloudymax/modules-gcp-tf-base.git | n/a |
-| <a name="module_gcp-tf-vm"></a> [gcp-tf-vm](#module\_gcp-tf-vm) | github.com/cloudymax/modules-gcp-tf-vm.git | n/a |
+| <a name="module_modules-gcp-gke"></a> [modules-gcp-gke](#module\_modules-gcp-gke) | github.com/cloudymax/modules-gcp-gke.git | n/a |
 
 ## Resources
 
@@ -264,26 +264,34 @@ No resources.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_autoscaling_enabled"></a> [autoscaling\_enabled](#input\_autoscaling\_enabled) | set autoscaling true or false | `bool` | `true` | no |
+| <a name="input_autoscaling_max_nodes"></a> [autoscaling\_max\_nodes](#input\_autoscaling\_max\_nodes) | max number of nodes allowed | `number` | `1` | no |
+| <a name="input_autoscaling_min_nodes"></a> [autoscaling\_min\_nodes](#input\_autoscaling\_min\_nodes) | min number of nodes allocation | `number` | `1` | no |
+| <a name="input_autoscaling_strategy"></a> [autoscaling\_strategy](#input\_autoscaling\_strategy) | GKE autoscaling strategy. BALANCED or ANY | `string` | `"ANY"` | no |
 | <a name="input_backend_bucket_name"></a> [backend\_bucket\_name](#input\_backend\_bucket\_name) | name of the bucket that will hold the terraform state | `string` | `"slim"` | no |
 | <a name="input_big_robot_email"></a> [big\_robot\_email](#input\_big\_robot\_email) | email of the top-level service account | `string` | n/a | yes |
 | <a name="input_big_robot_group"></a> [big\_robot\_group](#input\_big\_robot\_group) | group for top-level service accounts | `string` | n/a | yes |
 | <a name="input_big_robot_name"></a> [big\_robot\_name](#input\_big\_robot\_name) | Name of the top-level service account | `string` | n/a | yes |
 | <a name="input_billing_account"></a> [billing\_account](#input\_billing\_account) | the billing account you want all this to go under | `string` | n/a | yes |
 | <a name="input_bucket_path_prefix"></a> [bucket\_path\_prefix](#input\_bucket\_path\_prefix) | path to the terrafom state in the bucket | `string` | n/a | yes |
-| <a name="input_disk_size"></a> [disk\_size](#input\_disk\_size) | n/a | `number` | `128` | no |
-| <a name="input_guest_accelerator"></a> [guest\_accelerator](#input\_guest\_accelerator) | n/a | `string` | n/a | yes |
-| <a name="input_guest_accelerator_count"></a> [guest\_accelerator\_count](#input\_guest\_accelerator\_count) | n/a | `number` | n/a | yes |
+| <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | Name of the GKE cluster we will create | `string` | `"my-cluster"` | no |
+| <a name="input_disk_size"></a> [disk\_size](#input\_disk\_size) | default size of the OS Disk for each VM or Node | `number` | `64` | no |
+| <a name="input_disk_type"></a> [disk\_type](#input\_disk\_type) | 'pd-standard', 'pd-balanced' or 'pd-ssd' | `string` | n/a | yes |
+| <a name="input_guest_accelerator"></a> [guest\_accelerator](#input\_guest\_accelerator) | GPU or TPU to attach to the virtual-machine. | `string` | n/a | yes |
+| <a name="input_guest_accelerator_count"></a> [guest\_accelerator\_count](#input\_guest\_accelerator\_count) | Number of accelerators to attach to each machine | `number` | n/a | yes |
+| <a name="input_initial_node_count"></a> [initial\_node\_count](#input\_initial\_node\_count) | Number of nodes the GKE cluster starts with | `number` | `1` | no |
 | <a name="input_keyring"></a> [keyring](#input\_keyring) | Name for your keyring decryption key | `string` | n/a | yes |
 | <a name="input_keyring_key"></a> [keyring\_key](#input\_keyring\_key) | name for the key you will create in the keyring | `string` | n/a | yes |
 | <a name="input_location"></a> [location](#input\_location) | geographic location/region | `string` | n/a | yes |
-| <a name="input_machine_type"></a> [machine\_type](#input\_machine\_type) | n/a | `string` | n/a | yes |
+| <a name="input_machine_type"></a> [machine\_type](#input\_machine\_type) | The GCP machine type to use for the VM or Nodes | `string` | n/a | yes |
 | <a name="input_main_availability_zone"></a> [main\_availability\_zone](#input\_main\_availability\_zone) | availability zone within your region/location | `string` | n/a | yes |
 | <a name="input_organization"></a> [organization](#input\_organization) | your GCP organization name | `string` | n/a | yes |
 | <a name="input_organization_id"></a> [organization\_id](#input\_organization\_id) | gcloud projects describe <project> --format='value(parent.id)' | `string` | n/a | yes |
-| <a name="input_os_image"></a> [os\_image](#input\_os\_image) | n/a | `string` | `"ubuntu-os-cloud/ubuntu-2204-lts"` | no |
+| <a name="input_os_image"></a> [os\_image](#input\_os\_image) | Operating system to use on VM's and nodes | `string` | `"ubuntu-os-cloud/ubuntu-2204-lts"` | no |
 | <a name="input_project_id"></a> [project\_id](#input\_project\_id) | machine readable project name | `string` | n/a | yes |
 | <a name="input_project_name"></a> [project\_name](#input\_project\_name) | The human-readbale project name string | `string` | n/a | yes |
-| <a name="input_userdata"></a> [userdata](#input\_userdata) | n/a | `string` | `"user-data.yaml"` | no |
+| <a name="input_use_default_node_pool"></a> [use\_default\_node\_pool](#input\_use\_default\_node\_pool) | True=use the deafult GKE node pool, Fale=use seprately managed pool | `bool` | `false` | no |
+| <a name="input_userdata"></a> [userdata](#input\_userdata) | Cloud-init user-data.yaml file to apply to each VM or Node | `string` | `"user-data.yaml"` | no |
 
 ## Outputs
 

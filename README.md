@@ -51,6 +51,14 @@ Workflows included:
    - [Run Infracost automatically in your Github Actions Workflows](https://github.com/infracost/actions)
    - [Check out the project out on Github](https://github.com/infracost/infracost)
 
+## Helpful Links
+
+- [GPU models availble on Google Cloud](https://cloud.google.com/compute/docs/gpus#nvidia_gpus_for_compute_workloads)
+- [GPU model availability by region](https://cloud.google.com/compute/docs/gpus/gpu-regions-zones)
+- [GPU Prices](https://cloud.google.com/compute/gpus-pricing)
+- [Virtual Machine types available](https://cloud.google.com/compute/docs/machine-resource)
+- [Virtual Mchine Prices](https://cloud.google.com/compute/vm-instance-pricing)
+
 ## Get Started
 
 1. Authenticate to Google Cloud

@@ -1,6 +1,6 @@
 # GCP Starter-Project Template (WiP)
 
-Creates all the basic terraform resources + GHA workflows needed for a new GCP terraform project + a Virtual Machine or Kubernetes Cluster. Clone this repo and follow allong to get quickly bootsrap your own GCP project.
+Create and manage all the basic resources needed for a new GCP project using Terraform and Github Actions. Supports Virtual Machines and/or Kubernetes. Clone this repo and follow allong to get quickly bootsrap your own GCP project.
 
 Modules in use:
 - [modules-gcp-tf-base](https://github.com/cloudymax/modules-gcp-tf-base)

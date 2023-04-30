@@ -15,7 +15,7 @@ Workflows included:
 - [Craete an Infracost price estimate on workflow dispatch](https://github.com/cloudymax/gcp-tf-starter/blob/main/.github/workflows/infracost.yml)
 - [Update terraform docs on workflow dispatch](https://github.com/cloudymax/gcp-tf-starter/blob/main/.github/workflows/main.yml)
 
-## Requirements
+## Prerequisites
 
 1. A Google Cloud Platform Account
 
@@ -231,10 +231,6 @@ Workflows included:
     -var="organization=$ORGANIZATION" \
     -var="organization_id=$ORGANIZATION_ID"
     ```
-
-## GPU Quoata request
-
-- [How to request GPU quota increase in Google Cloud](https://stackoverflow.com/questions/45227064/how-to-request-gpu-quota-increase-in-google-cloud)
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements

@@ -35,7 +35,7 @@ Workflows included:
    - [Installing Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
    - [Dockerhub images](https://hub.docker.com/r/hashicorp/terraform/)
 
-4. Quotas
+4. Resource Quotas (Optional)
 
    GCP as well as most other cloud providers amke use of `Quotas` to limit the amount of resources customers can create. This prevents abuse of their `free-tier` as well as stops customer from accidentially letting autoscaling generate massive bills. If you plan on deploying GPU/TPU accelerators or more than a couple VMs, you will need to request a quota increase for those resources. See below for more information.
 

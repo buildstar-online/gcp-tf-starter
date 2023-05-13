@@ -50,16 +50,19 @@ module "modules-gcp-gke" {
 
   source = "github.com/cloudymax/modules-gcp-gke.git"
 
-  cluster_name          = var.cluster_name
-  use_default_node_pool = var.use_default_node_pool
-  initial_node_count    = var.initial_node_count
-  disk_type             = var.disk_type
-  machine_type          = var.machine_type
-  autoscaling_enabled   = var.autoscaling_enabled
-  autoscaling_min_nodes = var.autoscaling_min_nodes
-  autoscaling_max_nodes = var.autoscaling_max_nodes
-  autoscaling_strategy  = var.autoscaling_strategy
-  node_service_account  = var.big_robot_email
+  cluster_name            = var.cluster_name
+  use_default_node_pool   = var.use_default_node_pool
+  initial_node_count      = var.initial_node_count
+  disk_type               = var.disk_type
+  disk_size               = var.disk_size
+  machine_type            = var.machine_type
+  guest_accelerator       = var.guest_accelerator
+  guest_accelerator_count = var.guest_accelerator_count
+  autoscaling_enabled     = var.autoscaling_enabled
+  autoscaling_min_nodes   = var.autoscaling_min_nodes
+  autoscaling_max_nodes   = var.autoscaling_max_nodes
+  autoscaling_strategy    = var.autoscaling_strategy
+  node_service_account    = var.big_robot_email
 
   #autoscaling_max_mem     = var.autoscaling_max_mem
   #autoscaling_min_mem     = var.autoscaling_min_mem
@@ -67,6 +70,7 @@ module "modules-gcp-gke" {
   #autoscaling_max_cpu     = var.autoscaling_max_cpu
   #container_name          = var.container_name
   #container_image         = var.container_image
+  #replicas                = 1
 
   region                  = var.location
   main_availability_zone  = var.main_availability_zone
@@ -75,7 +79,6 @@ module "modules-gcp-gke" {
   project_id              = var.project_id
   vpc_network_name        = module.gcp-tf-base.network_name
   vpc_network_subnet_name = module.gcp-tf-base.subnet_name
-  replicas                = 1
 }
 
 

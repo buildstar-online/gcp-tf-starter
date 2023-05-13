@@ -51,6 +51,7 @@ module "modules-gcp-gke" {
 
   source = "github.com/cloudymax/modules-gcp-gke.git"
 
+  project_id              = var.project_id
   cluster_name            = var.cluster_name
   use_default_node_pool   = var.use_default_node_pool
   initial_node_count      = var.initial_node_count

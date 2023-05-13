@@ -1,4 +1,4 @@
-name: Run Terraform
+name: Create VM Now
 on:
   workflow_dispatch:
     inputs:

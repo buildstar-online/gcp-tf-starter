@@ -36,4 +36,6 @@ jobs:
                           --terraform-var organization='${{ secrets.ORGANIZATION }}' \
                           --terraform-var organization_id='${{ secrets.ORGANIZATION_ID }}' \
                           --terraform-var billing_account='${{ secrets.BILLING_ACCOUNT }}'
-                          
+        shell: bash
+        env:
+            INFRACOST_CURRENCY: "EUR"

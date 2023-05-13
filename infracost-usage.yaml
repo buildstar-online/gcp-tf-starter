@@ -1,7 +1,0 @@
----
-version: 0.1
-resource_type_default_usage:
-  google_compute_instance.compute_instance:
-    monthly_hrs: 200
-  google_container_node_pool.primary_preemptible_nodes:
-    monthly_hrs: 200

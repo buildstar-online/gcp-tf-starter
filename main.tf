@@ -24,6 +24,7 @@ module "gcp-tf-base" {
   bucket_path_prefix  = var.bucket_path_prefix
 }
 
+
 /*
 module "gcp-tf-vm" {
 

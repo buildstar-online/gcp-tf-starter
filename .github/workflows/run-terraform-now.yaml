@@ -1,0 +1,66 @@
+name: Run Terraform Now
+on:
+  workflow_dispatch:
+jobs:
+  run-terraform:
+    runs-on: ubuntu-latest
+    steps:
+    - id: 'auth'
+      uses: 'google-github-actions/auth@v1'
+      with:
+        credentials_json: '${{ secrets.TERRAFORM_KEY }}'
+
+    - name: 'Set up Cloud SDK'
+      uses: 'google-github-actions/setup-gcloud@v1'
+
+    - name: 'Use gcloud CLI'
+      run: 'gcloud info'
+      
+    - uses: actions/checkout@v3
+    - name: Terraform fmt
+      run: |
+        docker run --platform linux/amd64 \
+          -v $(pwd):/terraform -w /terraform \
+          hashicorp/terraform fmt
+      continue-on-error: false
+      shell: bash
+
+    - name: Terraform Init
+      run: |
+        docker run --platform linux/amd64 \
+          -e GOOGLE_CREDENTIALS='${{ secrets.TERRAFORM_KEY }}' \
+          -v $(pwd):/terraform -w /terraform hashicorp/terraform init -upgrade
+      continue-on-error: false
+      shell: bash
+      
+    - name: Terraform Validate
+      run: |
+        docker run --platform linux/amd64 \
+          -v $(pwd):/terraform -w /terraform \
+          hashicorp/terraform validate -no-color
+      continue-on-error: false
+      shell: bash
+      
+    - name: Terraform Plan
+      run: |
+        docker run --platform linux/amd64 \
+          -e GOOGLE_CREDENTIALS='${{ secrets.TERRAFORM_KEY }}' \
+          -v $(pwd):/terraform -w /terraform \
+          hashicorp/terraform plan -no-color \
+          -var="organization=${{ secrets.ORGANIZATION }}" \
+          -var="organization_id=${{ secrets.ORGANIZATION_ID }}" \
+          -var="billing_account=${{ secrets.BILLING_ACCOUNT }}" 
+      continue-on-error: false
+      shell: bash
+
+    - name: Terraform Apply
+      run: |
+        docker run --platform linux/amd64 \
+          -e GOOGLE_CREDENTIALS='${{ secrets.TERRAFORM_KEY }}' \
+          -v $(pwd):/terraform -w /terraform \
+          hashicorp/terraform apply \
+          -var="organization=${{ secrets.ORGANIZATION }}" \
+          -var="organization_id=${{ secrets.ORGANIZATION_ID }}" \
+          -var="billing_account=${{ secrets.BILLING_ACCOUNT }}" -auto-approve -input=false
+      shell: bash
+      continue-on-error: false

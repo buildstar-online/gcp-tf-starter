@@ -133,6 +133,7 @@ Workflows included:
    gcloud services enable iam.googleapis.com
    gcloud services enable cloudbilling.googleapis.com
    gcloud services enable container.googleapis.com
+   gcloud services enable gkehub.googleapis.com 
    sudo apt-get install google-cloud-sdk-gke-gcloud-auth-plugin
    ```
 

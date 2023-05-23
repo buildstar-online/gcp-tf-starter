@@ -11,6 +11,7 @@ backend_bucket_name     = "gpu-vm-project-backend-state-storage"
 bucket_path_prefix      = "terraform/state"
 guest_accelerator       = "nvidia-l4"
 guest_accelerator_count = 1
+initial_node_count      = 2
 machine_type            = "g2-standard-4"
 disk_type               = "pd-ssd"
 disk_size               = "64"

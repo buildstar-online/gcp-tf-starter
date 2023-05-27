@@ -44,7 +44,7 @@ module "gcp-tf-vm" {
   disk_size                   = var.disk_size
   userdata                    = var.userdata
 }
-
+/*
 
 
 module "modules-gcp-gke" {
@@ -81,6 +81,5 @@ module "modules-gcp-gke" {
   vpc_network_name        = module.gcp-tf-base.network_name
   vpc_network_subnet_name = module.gcp-tf-base.subnet_name
 }
-*/
 
 

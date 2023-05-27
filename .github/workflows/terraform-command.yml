@@ -10,8 +10,8 @@ permissions:
   pull-requests: write
 
 jobs:
-  terraform-destroy:
-    runs-on: ubuntu-latest 
+  terraform-command:
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
 
@@ -33,7 +33,7 @@ jobs:
       continue-on-error: false
       shell: bash
     
-    - name: Terraform Destroy
+    - name: Run Terraform Command
       run: |
         docker run --platform linux/amd64 \
           -e GOOGLE_CREDENTIALS='${{ secrets.TERRAFORM_KEY }}' \

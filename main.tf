@@ -44,7 +44,7 @@ module "gcp-tf-vm" {
   disk_size                   = var.disk_size
   userdata                    = var.userdata
 }
-/*
+*/
 
 
 module "modules-gcp-gke" {

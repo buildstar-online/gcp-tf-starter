@@ -1,5 +1,11 @@
-name: Terraform Destroy
-on: workflow_dispatch
+name: Terraform Comand
+on:
+  workflow_dispatch:
+    inputs:
+      terraform_command:
+        description: 'Command to run'
+        required: true
+        default: 'destroy'
 permissions:
   pull-requests: write
 
@@ -29,11 +35,10 @@ jobs:
     
     - name: Terraform Destroy
       run: |
-       
         docker run --platform linux/amd64 \
           -e GOOGLE_CREDENTIALS='${{ secrets.TERRAFORM_KEY }}' \
           -v $(pwd):/terraform -w /terraform \
-          hashicorp/terraform destroy \
+          hashicorp/terraform ${{ github.event.inputs.terraform_command }} \
           -var="organization=${{ secrets.ORGANIZATION }}" \
           -var="organization_id=${{ secrets.ORGANIZATION_ID }}" \
           -var="billing_account=${{ secrets.BILLING_ACCOUNT }}" -auto-approve -input=false

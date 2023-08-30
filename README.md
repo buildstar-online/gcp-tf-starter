@@ -11,6 +11,7 @@ GCP Starter-Project
 <p align=center>
 Create and manage the basic resources needed for a new GCP project <br> 
   using Terraform and Github Actions.<br>
+</p>
 <br>
 
 ## Prerequisites

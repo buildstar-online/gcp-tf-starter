@@ -25,7 +25,7 @@ module "gcp-tf-base" {
 }
 
 
-/*
+
 module "gcp-tf-vm" {
 
   source = "github.com/cloudymax/modules-gcp-tf-vm.git"
@@ -44,9 +44,9 @@ module "gcp-tf-vm" {
   disk_size                   = var.disk_size
   userdata                    = var.userdata
 }
-*/
 
 
+/*
 module "modules-gcp-gke" {
 
   source = "github.com/cloudymax/modules-gcp-gke.git"
@@ -81,5 +81,5 @@ module "modules-gcp-gke" {
   vpc_network_name        = module.gcp-tf-base.network_name
   vpc_network_subnet_name = module.gcp-tf-base.subnet_name
 }
-
+*/
 

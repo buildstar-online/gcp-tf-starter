@@ -253,9 +253,9 @@ Create and manage the basic resources needed for a new GCP project <br>
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_google"></a> [google](#requirement\_google) | 4.47.0 |
-| <a name="requirement_google-beta"></a> [google-beta](#requirement\_google-beta) | 4.47.0 |
-| <a name="requirement_random"></a> [random](#requirement\_random) | 3.4.3 |
+| <a name="requirement_google"></a> [google](#requirement\_google) | >=4.47.0 |
+| <a name="requirement_google-beta"></a> [google-beta](#requirement\_google-beta) | >=4.47.0 |
+| <a name="requirement_random"></a> [random](#requirement\_random) | >=3.4.3 |
 
 ## Providers
 
@@ -266,7 +266,7 @@ No providers.
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_gcp-tf-base"></a> [gcp-tf-base](#module\_gcp-tf-base) | github.com/cloudymax/modules-gcp-tf-base.git | n/a |
-| <a name="module_modules-gcp-gke"></a> [modules-gcp-gke](#module\_modules-gcp-gke) | github.com/cloudymax/modules-gcp-gke.git | n/a |
+| <a name="module_gcp-tf-vm"></a> [gcp-tf-vm](#module\_gcp-tf-vm) | github.com/cloudymax/modules-gcp-tf-vm.git | n/a |
 
 ## Resources
 

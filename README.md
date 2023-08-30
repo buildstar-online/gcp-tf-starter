@@ -2,36 +2,16 @@
 GCP Starter-Project
 </h1>
 
-<p align=center>
-Create and manage all the basic resources needed for a new GCP project using Terraform and Github Actions. Supports Virtual Machines and/or Kubernetes. Clone this repo and follow allong to get quickly bootsrap your own GCP project.<br>
-<br>
-  
 <p align="center">
   <img width="64" src="https://icons-for-free.com/iconfiles/png/512/terraform-1331550893634583795.png">
   <img width="64" src="https://icons-for-free.com/iconfiles/png/512/google+logo+new+icon-1320185797820629294.png">
 <p>
 
-<h3 align=center>
-Modules:
-</h3>
 
-<p align="center">
-   <a href="https://github.com/cloudymax/modules-gcp-tf-base">modules-gcp-tf-base</a><br>
-   <a href="https://github.com/cloudymax/modules-gcp-tf-vm">modules-gcp-tf-vm</a><br>
-   <a href="https://github.com/cloudymax/modules-gcp-tf-gke">modules-gcp-tf-gke</a><br
-</p>
+<p align=center>
+Create and manage the basic resources needed for a new GCP project <br> 
+  using Terraform and Github Actions.<br>
 <br>
-
-
-### Workflows:
-
-- [Run `terraform apply` on merge to main](https://github.com/cloudymax/gcp-tf-starter/blob/main/.github/workflows/apply-on-merge.yml)<br>
-- [Run `terraform plan` on pull request](https://github.com/cloudymax/gcp-tf-starter/blob/main/.github/workflows/plan-on-pr.yml)<br>
-- [Run `terraform apply` with custom parameters on workflow dispatch](https://github.com/cloudymax/gcp-tf-starter/blob/main/.github/workflows/run-terraform.yml)<br>
-- [Run `terraform destroy` on workflow dispatch](https://github.com/cloudymax/gcp-tf-starter/blob/main/.github/workflows/terraform-destroy.yml)<br>
-- [Craete an Infracost price estimate on workflow dispatch](https://github.com/cloudymax/gcp-tf-starter/blob/main/.github/workflows/infracost.yml)<br>
-- [Update terraform docs on workflow dispatch](https://github.com/cloudymax/gcp-tf-starter/blob/main/.github/workflows/main.yml)
-</
 
 ## Prerequisites
 
@@ -69,13 +49,23 @@ Modules:
    - [Run Infracost automatically in your Github Actions Workflows](https://github.com/infracost/actions)
    - [Check out the project out on Github](https://github.com/infracost/infracost)
 
-## Helpful Links
 
-- [GPU models availble on Google Cloud](https://cloud.google.com/compute/docs/gpus#nvidia_gpus_for_compute_workloads)
-- [GPU model availability by region](https://cloud.google.com/compute/docs/gpus/gpu-regions-zones)
-- [GPU Prices](https://cloud.google.com/compute/gpus-pricing)
-- [Virtual Machine types available](https://cloud.google.com/compute/docs/machine-resource)
-- [Virtual Mchine Prices](https://cloud.google.com/compute/vm-instance-pricing)
+### Modules in use:
+
+- [modules-gcp-tf-base](https://github.com/cloudymax/modules-gcp-tf-base)
+- [modules-gcp-tf-vm](https://github.com/cloudymax/modules-gcp-tf-vm)
+- [modules-gcp-tf-gke](https://github.com/cloudymax/modules-gcp-tf-gke)
+
+
+#### Workflows in use:
+
+- [Run `terraform apply` on merge to main](https://github.com/cloudymax/gcp-tf-starter/blob/main/.github/workflows/apply-on-merge.yml)<br>
+- [Run `terraform plan` on pull request](https://github.com/cloudymax/gcp-tf-starter/blob/main/.github/workflows/plan-on-pr.yml)<br>
+- [Run `terraform apply` with custom parameters on workflow dispatch](https://github.com/cloudymax/gcp-tf-starter/blob/main/.github/workflows/run-terraform.yml)<br>
+- [Run `terraform destroy` on workflow dispatch](https://github.com/cloudymax/gcp-tf-starter/blob/main/.github/workflows/terraform-destroy.yml)<br>
+- [Craete an Infracost price estimate on workflow dispatch](https://github.com/cloudymax/gcp-tf-starter/blob/main/.github/workflows/infracost.yml)<br>
+- [Update terraform docs on workflow dispatch](https://github.com/cloudymax/gcp-tf-starter/blob/main/.github/workflows/main.yml)
+</
 
 ## Get Started
 

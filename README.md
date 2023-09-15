@@ -51,13 +51,6 @@ Create and manage the basic resources needed for a new GCP project <br>
    - [Check out the project out on Github](https://github.com/infracost/infracost)
 
 
-### Modules in use:
-
-- [modules-gcp-tf-base](https://github.com/cloudymax/modules-gcp-tf-base)
-- [modules-gcp-tf-vm](https://github.com/cloudymax/modules-gcp-tf-vm)
-- [modules-gcp-tf-gke](https://github.com/cloudymax/modules-gcp-tf-gke)
-
-
 #### Workflows in use:
 
 - [Run `terraform apply` on merge to main](https://github.com/cloudymax/gcp-tf-starter/blob/main/.github/workflows/apply-on-merge.yml)<br>
